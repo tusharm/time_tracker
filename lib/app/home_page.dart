@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:time_tracker_flutter_course/app/services/auth.dart';
+import 'package:time_tracker/app/services/auth.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({

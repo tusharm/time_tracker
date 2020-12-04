@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:time_tracker_flutter_course/app/services/auth.dart';
-import 'package:time_tracker_flutter_course/app/signin/signin_button.dart';
-import 'package:time_tracker_flutter_course/app/signin/social_sign_in_button.dart';
+import 'package:time_tracker/app/services/auth.dart';
+import 'package:time_tracker/app/signin/signin_button.dart';
+import 'package:time_tracker/app/signin/social_sign_in_button.dart';
 
 class SignInPage extends StatelessWidget {
   const SignInPage({

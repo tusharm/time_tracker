@@ -48,7 +48,9 @@ class SignInPage extends StatelessWidget {
             asset: 'images/google-logo.png',
             color: Colors.white,
             textColor: Colors.black87,
-            onPressed: () {},
+            onPressed: () async {
+              await auth.signInWithGoogle();
+            },
           ),
           SizedBox(height: 8.0),
           SocialSignInButton(
@@ -79,7 +81,7 @@ class SignInPage extends StatelessWidget {
             textColor: Colors.black87,
             color: Colors.lime[300],
             onPressed: () async {
-              await auth.signIn();
+              await auth.signInAnonymously();
             },
           ),
         ],

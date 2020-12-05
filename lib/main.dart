@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       title: 'Time Tracker App',
       theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: LandingPage(
-        auth: AnonymousAuth(),
+        auth: FirebaseAuthentication(),
       ),
     );
   }

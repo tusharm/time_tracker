@@ -3,6 +3,8 @@ import 'package:time_tracker/app/services/auth.dart';
 import 'package:time_tracker/app/signin/signin_button.dart';
 import 'package:time_tracker/app/signin/social_sign_in_button.dart';
 
+import 'email_signin_page.dart';
+
 class SignInPage extends StatelessWidget {
   const SignInPage({
     Key key,
@@ -18,12 +20,12 @@ class SignInPage extends StatelessWidget {
         title: Text('Time Tracker'),
         elevation: 1.0,
       ),
-      body: _buildContent(),
+      body: _buildContent(context),
       backgroundColor: Colors.grey[200], // different shades of material color
     );
   }
 
-  Widget _buildContent() {
+  Widget _buildContent(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(16.0),
       child: Column(
@@ -54,6 +56,15 @@ class SignInPage extends StatelessWidget {
           ),
           SizedBox(height: 8.0),
           SignInButton(
+            text: 'Sign in with email',
+            textColor: Colors.white,
+            color: Colors.teal[700],
+            onPressed: () {
+              _signInWithEmail(context);
+            },
+          ),
+          SizedBox(height: 8.0),
+          SignInButton(
             text: 'Go Anonymous',
             textColor: Colors.black87,
             color: Colors.lime[300],
@@ -65,4 +76,12 @@ class SignInPage extends StatelessWidget {
       ),
     );
   }
+
+  void _signInWithEmail(BuildContext context) {
+    Navigator.of(context).push(MaterialPageRoute(
+      fullscreenDialog: true,
+      builder: (context) => EmailSignInPage(),
+    ));
+  }
 }
+

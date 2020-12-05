@@ -8,8 +8,14 @@ This app assumes a pre-configured Firebase project. To get one, follow the [Prer
 
 Note that following sign-in methods also need to be enabled in Firebase console (Authentication -> Sign-in method):
 1. Google
-2. Anonymous
+2. Email
+3. Anonymous
 
 ### Screenshots
 
-<img src="images/ios-signin.png" height="300em" />
+<p>
+<img src="images/signin.png" height="300em" />
+<img src="images/google_signin.png" height="300em" />
+<img src="images/email_signin.png" height="300em" />
+<img src="images/email_register.png" height="300em" />
+</p>

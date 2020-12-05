@@ -5,16 +5,9 @@ class HomePage extends StatelessWidget {
   const HomePage({
     Key key,
     @required this.auth,
-    @required this.signedOut,
   }) : super(key: key);
 
   final AuthBase auth;
-  final VoidCallback signedOut;
-
-  Future<void> _signOut() async {
-    await this.auth.signOut();
-    signedOut();
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +23,9 @@ class HomePage extends StatelessWidget {
                 color: Colors.white,
               ),
             ),
-            onPressed: _signOut,
+            onPressed: () async {
+              await auth.signOut();
+            },
           )
         ],
       ),

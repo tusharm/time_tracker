@@ -5,41 +5,30 @@ import 'package:time_tracker/app/signin/signin_page.dart';
 
 import 'services/auth.dart';
 
-class LandingPage extends StatefulWidget {
-  const LandingPage({Key key, @required  this.auth}) : super(key: key);
+class LandingPage extends StatelessWidget {
+  const LandingPage({Key key, @required this.auth}) : super(key: key);
 
   final AuthBase auth;
 
   @override
-  _LandingPageState createState() => _LandingPageState();
-}
-
-class _LandingPageState extends State<LandingPage> {
-  var _user;
-
-  @override
-  void initState() {
-    super.initState();
-    _updateUser(FirebaseAuth.instance.currentUser);
-  }
-
-  @override
   Widget build(BuildContext context) {
-    if (_user == null)
-      return SignInPage(
-        signedIn: _updateUser,
-        auth: widget.auth,
-      );
-    else
-      return HomePage(
-        signedOut: () => _updateUser(null),
-        auth: widget.auth,
-      );
-  }
+    // a builder that responds to events in the stream
+    return StreamBuilder<User>(
+      stream: auth.authStateChangesStream,
+      builder: (context, snapshot) {
+        if (snapshot.connectionState == ConnectionState.active) {
+          return snapshot.hasData
+              ? HomePage(auth: auth)
+              : SignInPage(auth: auth);
+        }
 
-  void _updateUser(user) {
-    setState(() {
-      this._user = user;
-    });
+        // show a spinner while listening for stream events
+        return Scaffold(
+          body: Center(
+            child: CircularProgressIndicator(),
+          ),
+        );
+      },
+    );
   }
 }

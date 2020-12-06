@@ -51,7 +51,7 @@ class SignInPage extends StatelessWidget {
             color: Colors.white,
             textColor: Colors.black87,
             onPressed: () async {
-              await auth.signInWithGoogle();
+              await auth.signInWithGoogle(context);
             },
           ),
           SizedBox(height: 8.0),

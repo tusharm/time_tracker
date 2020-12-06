@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:time_tracker/app/signin/form_signin_button.dart';
 import 'package:time_tracker/app/services/auth.dart';
+import 'package:time_tracker/app/widgets/dialog.dart';
 
 enum EmailSignInFormType { signin, register }
 
@@ -87,15 +88,20 @@ class _EmailSignInFormState extends State<EmailSignInForm> {
         await widget.auth.signInWithEmailAndPassword(email, password);
       else
         await widget.auth.registerWithEmailAndPassword(email, password);
+
+      Navigator.of(context).pop();
     } catch (e) {
-      print(e);
+      showAlertDialog(
+        context: context,
+        title: 'Sign in failed',
+        text: e.toString(),
+        actionText: 'OK',
+      );
     } finally {
       setState(() {
         _isLoading = false;
       });
     }
-
-    Navigator.of(context).pop();
   }
 
   void _toggleFormType() {

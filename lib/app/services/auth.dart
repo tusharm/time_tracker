@@ -1,7 +1,9 @@
 import 'dart:async';
 
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/src/widgets/framework.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:time_tracker/app/widgets/dialog.dart';
 
 abstract class AuthBase {
   User get currentUser;
@@ -14,7 +16,7 @@ abstract class AuthBase {
 
   Future<User> signInAnonymously();
 
-  Future<User> signInWithGoogle();
+  Future<User> signInWithGoogle(BuildContext context);
 
   Future<void> signOut();
 }
@@ -56,7 +58,7 @@ class FirebaseAuthentication implements AuthBase {
   }
 
   @override
-  Future<User> signInWithGoogle() async {
+  Future<User> signInWithGoogle(BuildContext context) async {
     var googleAccount = await _googleSignIn.signIn();
     if (googleAccount != null) {
       final googleAuth = await googleAccount.authentication;
